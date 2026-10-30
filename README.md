@@ -1,8 +1,7 @@
 # WEP Crack Visualizer
 
 Ein Lehr- und Demo-Werkzeug, das den statistischen WEP-Angriff (Kleins Angriff)
-als sichtbares **„Byte-Rennen"** darstellt — entwickelt für eine Schul-/Fach­präsentation
-über die Entwicklung der WLAN-Sicherheit (WEP → WPA → WPA2 → WPA3).
+als sichtbares **„Byte-Rennen"** darstellt.
 
 Statt wie `aircrack-ng` den Schlüssel in Sekundenbruchteilen auszugeben, macht dieses
 Tool den Vorgang **nachvollziehbar**: Man sieht, wie pro Schlüssel-Byte Stimmen
@@ -10,8 +9,7 @@ gesammelt werden und sich der richtige Wert langsam gegen das Rauschen durchsetz
 
 > ⚠️ **Rechtlicher & ethischer Rahmen**
 > Dieses Tool ist ausschließlich für den Einsatz am **eigenen** Access Point in einem
-> **isolierten Testnetz** gedacht (Ausbildung/Demonstration). Das Angreifen fremder
-> Netze ist strafbar (in Österreich u. a. § 118a, 126a, 126c StGB; vergleichbar in DE/CH).
+> **isolierten Testnetz** gedacht (Ausbildung/Demonstration).
 > Der Autor übernimmt keine Haftung für missbräuchliche Verwendung.
 
 ---
@@ -20,20 +18,16 @@ gesammelt werden und sich der richtige Wert langsam gegen das Rauschen durchsetz
 
 - **Phase 1 — Capture:** Mitschneiden der Initialisierungsvektoren (IVs) eines
   WEP-Netzes, optional mit **ARP-Replay-Injection**, um in Minuten statt Stunden
-  genug IVs zu sammeln. Ein Zähler läuft live mit.
+  genug IVs zu sammeln.
 - **Phase 2 — Crack (das Byte-Rennen):** Aus den gesammelten Paketen wird der
   Schlüssel **live berechnet** und als wachsende Vote-Tabelle pro Byte animiert.
   Die ersten vier geheimen Bytes fallen statistisch (Klein), das letzte wird
   sichtbar per Brute-Force gegen den bekannten Klartext bestätigt.
-- **Aufdeckung:** Der gefundene 64-bit-Schlüssel rastet am Ende grün ein — erst
-  dann, nicht vorher (keine „Spoiler" in der Konsole).
+- **Aufdeckung:** Der gefundene 64-bit-Schlüssel rastet am Ende grün ein.
 
 Zusätzlich enthalten:
 
-- **Backup-Modus:** Eine vorhandene `.cap`-Datei einlesen und offline knacken —
-  falls die Live-Injection auf der Bühne zickt.
-- **Simulationsmodus** (`MODE="sim"`): läuft ohne Hardware/root überall, zum Proben.
-- **Hex-/ASCII-Umrechner** für den gefundenen Schlüssel.
+- **Backup-Modus:** Eine vorhandene `.cap`-Datei einlesen und offline knacken.
 - Automatisches Sichern verifizierter Captures nach `~/wep_captures/`.
 
 ---
@@ -79,10 +73,6 @@ cd <dein-repo>
 sudo apt install aircrack-ng python3-tk
 ```
 
-Keine weiteren Python-Abhängigkeiten — der Parser kommt ohne `scapy` aus.
-
----
-
 ## Nutzung
 
 **Live (am eigenen AP):**
@@ -97,9 +87,6 @@ sudo python3 wep_demo.py
 
 **Backup aus Datei:**
 Im Tool „`.cap` laden" wählen und eine zuvor gesicherte Capture knacken.
-
-**Proben ohne Hardware:**
-In der Konfig `MODE = "sim"` setzen und `python3 wep_demo.py` (ohne sudo) starten.
 
 ---
 
@@ -136,9 +123,3 @@ Oben im Skript (Abschnitt `CONFIG`):
 - A. Klein — *Attacks on the RC4 stream cipher* (2005)
 - Tews, Weinmann, Pyshkin — *Breaking 104-bit WEP in under a minute* (PTW, 2007)
 
----
-
-## Lizenz & Haftungsausschluss
-
-Nur zu Bildungszwecken. Verwendung ausschließlich an Netzen, die dir gehören oder
-für die du eine ausdrückliche Erlaubnis hast. Die Nutzung erfolgt auf eigene Verantwortung.
