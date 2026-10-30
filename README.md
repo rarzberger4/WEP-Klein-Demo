@@ -1,4 +1,4 @@
-# WEP Crack Visualizer
+# WEP Klein Demo
 
 Ein Lehr- und Demo-Werkzeug, das den statistischen WEP-Angriff (Kleins Angriff)
 als sichtbares **„Byte-Rennen"** darstellt.
